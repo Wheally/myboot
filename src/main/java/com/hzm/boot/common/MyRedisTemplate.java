@@ -17,10 +17,10 @@ public class MyRedisTemplate {
     @Autowired
     private RedisProperties     redisProperties;
 
-    private static final String KEY_SPLIT = ":"; //用于隔开缓存前缀与缓存键值 
+    private static final String KEY_SPLIT = ":"; //用于隔开缓存前缀与缓存键值
 
     /**
-     * 设置缓存 
+     * 设置缓存
      * @param prefix 缓存前缀（用于区分缓存，防止缓存键值重复）
      * @param key    缓存key
      * @param value  缓存value
@@ -76,7 +76,7 @@ public class MyRedisTemplate {
         jedisCluster.del(prefix + KEY_SPLIT + key);
         LOGGER.debug("RedisUtil:delete cache key={}", prefix + KEY_SPLIT + key);
     }
-    
+
     public void delete(String key) {
         jedisCluster.del(key);
         LOGGER.debug("RedisUtil:delete cache key={}", key);

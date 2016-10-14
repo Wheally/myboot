@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
  * Created by wxq-mac on 16/6/22.
  */
 @Service
-@Transactional
 public class UserService {
     @Autowired
     private User user;

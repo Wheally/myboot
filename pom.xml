@@ -83,6 +83,14 @@
     </dependencies>
 
     <build>
+
+        <!-- 命令行输入mvn时，默认执行mvn package -->
+        <defaultGoal>package</defaultGoal>
+
+        <filters>
+            <filter>src/main/filters/application-${build.profile.id}.properties</filter>
+        </filters>
+
         <plugins>
             <!--
                 用于将应用打成可直接运行的jar（该jar就是用于生产环境中的jar）
@@ -97,4 +105,33 @@
         </plugins>
     </build>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <build.profile.id>dev</build.profile.id>
+            </properties>
+        </profile>
+        <profile>
+            <id>product</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <build.profile.id>product</build.profile.id>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <build.profile.id>test</build.profile.id>
+            </properties>
+        </profile>
+    </profiles>
 </project>
