@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -18,7 +19,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@MapperScan(basePackages = "mapper")
+@MapperScan(basePackages = "classpath:mapper")
 public class MyBatisConfig {
 
     @Autowired
@@ -49,10 +50,9 @@ public class MyBatisConfig {
     public SqlSessionFactory sqlSessionFactory(DataSource ds) throws Exception {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(ds);
-        sessionFactory.setTypeAliasesPackage(env.getProperty("mybatis.typeAliasesPackage"));
-        sessionFactory.setConfigLocation(new PathMatchingResourcePatternResolver()
-                .getResource(env.getProperty("mybatis.mapperLocations")));
-
+        sessionFactory.setTypeAliasesPackage(env.getProperty("mybatis.typeAliases.package"));
+        sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver()
+                                .getResources(env.getProperty("mybatis.mapper.locations")));
         return sessionFactory.getObject();
     }
 
