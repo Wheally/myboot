@@ -1,40 +1,39 @@
+import com.alibaba.fastjson.JSON;
+import com.hzm.boot.Application;
 import com.hzm.boot.controller.UserController;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockServletContext;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import java.util.Map;
+
+
 /**
  * Created by wxq-mac on 16/9/16.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = MockServletContext.class)
-@WebAppConfiguration
-public class UserTest {
-
-    private MockMvc mockMvc;
-
-    @Before
-    public void setUp(){
-        mockMvc = MockMvcBuilders.standaloneSetup(new UserController()).build();
-    }
+public class UserTest extends BaseTest{
 
     @Test
     public void getUser() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/user/getUser/1")
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().string(equalTo("Hello World")));
+
+        String expectedResult = "zhaojigang";
+        String url = "/user/getUser?userId=2";
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get(url).accept(MediaType.APPLICATION_JSON))
+                .andReturn();
+        int status = mvcResult.getResponse().getStatus();
+        String content = mvcResult.getResponse().getContentAsString();
+
+        Map map = JSON.parseObject(content, Map.class);
+
+        Assert.assertTrue("错误，正确的返回值为200", status == 200);
+        Assert.assertFalse("错误，正确的返回值为200", status != 200);
+        Assert.assertTrue("数据一致", expectedResult.equals(map.get("username")));
+        Assert.assertFalse("数据不一致", !expectedResult.equals(map.get("username")));
     }
 
 }
