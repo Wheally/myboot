@@ -1,4 +1,4 @@
-package com.hzm.boot.common;
+package com.hzm.boot.config;
 
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;

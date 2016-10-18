@@ -31,4 +31,14 @@ public class IndexController {
     }
 
 
+    /**
+     * 测试全局异常处理
+     * @return
+     */
+    @RequestMapping("/exception")
+    public int zeroException(){
+        return 100/0;
+    }
+
+
 }

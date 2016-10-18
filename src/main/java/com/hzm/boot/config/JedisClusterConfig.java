@@ -1,8 +1,9 @@
-package com.hzm.boot.common;
+package com.hzm.boot.config;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import com.hzm.boot.common.RedisProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

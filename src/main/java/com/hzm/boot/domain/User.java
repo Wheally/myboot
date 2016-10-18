@@ -1,5 +1,6 @@
 package com.hzm.boot.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -10,6 +11,7 @@ public class User {
 
     private int id;
     private String username;
+    @JSONField(serialize=false)
     private String password;
 
     public int getId() {

@@ -1,4 +1,4 @@
-package com.hzm.boot.common;
+package com.hzm.boot.config;
 
 import com.hzm.boot.api.HelloAPI;
 import org.springframework.beans.factory.annotation.Autowired;

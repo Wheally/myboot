@@ -1,4 +1,4 @@
-package com.hzm.boot.common;
+package com.hzm.boot.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
