@@ -68,7 +68,7 @@ public class SendSMS {
             e.printStackTrace();
         }
         String ret = sendSMS(PostData, "http://sms.106jiekou.com/utf8/openapi.aspx");
-        System.out.println(Result.getName(ret));
+        System.out.println(Result.getName(ret.replace("\\n","")));
     }
 
     public enum Result {
