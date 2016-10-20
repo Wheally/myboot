@@ -3,12 +3,14 @@ package com.hzm.boot.domain;
 import com.alibaba.fastjson.annotation.JSONField;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties(prefix="user")
 public class User {
 
+    @Id
     private int id;
     private String name;
     @JSONField(serialize=false)
