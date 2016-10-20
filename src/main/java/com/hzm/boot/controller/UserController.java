@@ -23,7 +23,7 @@ public class UserController {
         System.out.println("UserId:"+userId);
 
         request.getSession().setAttribute("hello", "hello world");
-        return userService.getUser();
+        return userService.getUser(userId);
     }
 
 }

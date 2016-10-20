@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class User {
 
     private int id;
-    private String username;
+    private String name;
     @JSONField(serialize=false)
     private String password;
 
@@ -22,12 +22,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {

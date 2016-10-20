@@ -1,8 +1,11 @@
 package com.hzm.boot.service;
 
 import com.hzm.boot.domain.User;
+import com.hzm.boot.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -16,8 +19,24 @@ public class UserService {
 
     @Autowired
     private User user;
+    @Autowired
+    private UserMapper userMapper;
 
-    public User getUser(){
+    @Cacheable(value = "user", key = "'user-'+#userId")
+    public User getUser(int userId){
+        System.out.println("无缓存的时候调用这里");
         return user;
     }
+
+    @Transactional
+    public int saveUser(User user){
+        return userMapper.insertUser(user.getName(), user.getPassword());
+    }
+
+    @Transactional
+    public int saveUserBackId(User user){
+        return userMapper.insertUserWithBackId(user);
+    }
+
+
 }

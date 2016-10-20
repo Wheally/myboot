@@ -1,6 +1,8 @@
 import com.alibaba.fastjson.JSON;
 import com.hzm.boot.Application;
 import com.hzm.boot.controller.UserController;
+import com.hzm.boot.domain.User;
+import com.hzm.boot.service.UserService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,11 +34,31 @@ public class UserTest{
 
     public MockMvc mockMvc;
 
+    @Autowired
+    private UserService userService;
+
     @Before
     public void setUp(){
         mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
     }
 
+    @Test
+    public void saveUser(){
+        User user = new User();
+        user.setName("wenxq");
+        user.setPassword("1234");
+
+        int num = userService.saveUser(user);
+        Assert.assertEquals(1, num);
+    }
+    @Test
+    public void saveUser2(){
+        User user2 = new User();
+        user2.setName("wenzj");
+        user2.setPassword("1234");
+        int id = userService.saveUserBackId(user2);
+        Assert.assertNotNull(id);
+    }
 
     @Test
     public void getUser() throws Exception {

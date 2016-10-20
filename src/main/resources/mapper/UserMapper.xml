@@ -3,15 +3,15 @@
 <mapper namespace="com.hzm.boot.mapper.UserMapper">
 
 	<insert id="insertUserWithBackId" parameterType="User" useGeneratedKeys="true" keyProperty="id" >
-		INSERT INTO tb_user
+		INSERT INTO tbl_user
 		(
-		username,
-		password
+			name,
+			password
 		)
 		VALUES
 		(
-		#{username, jdbcType=VARCHAR},
-		#{password, jdbcType=VARCHAR}
+			#{name, jdbcType=VARCHAR},
+			#{password, jdbcType=VARCHAR}
 		)
 	</insert>
 
