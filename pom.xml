@@ -26,12 +26,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>slf4j-api</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
@@ -49,6 +43,21 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
         </dependency>
 
         <dependency>
@@ -113,9 +122,6 @@
 
     <build>
 
-        <!-- 命令行输入mvn时，默认执行mvn package -->
-        <defaultGoal>package</defaultGoal>
-
         <filters>
             <filter>src/main/filters/application-${build.profile.id}.properties</filter>
         </filters>
@@ -131,6 +137,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>1.3.5.RELEASE</version>
             </plugin>
+
         </plugins>
     </build>
 

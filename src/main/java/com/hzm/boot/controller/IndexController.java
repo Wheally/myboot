@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * springboot + thymeleaf
  * @author Created by WXQ on 2016/10/18.
@@ -18,7 +20,9 @@ public class IndexController {
 
     @RequestMapping(value = "/greeting", method = RequestMethod.GET)
     public String greeting(@RequestParam(name = "name", required = false, defaultValue = "world") String name,
-                           Model model) {
+                           Model model, HttpServletRequest request) {
+
+        name = (String) request.getSession().getAttribute("hello");
         model.addAttribute("xname", name);
         return "index";
     }

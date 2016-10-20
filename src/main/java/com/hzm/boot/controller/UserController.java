@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 @RestController
 @RequestMapping("/user")
@@ -17,8 +19,10 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/getUser",method = RequestMethod.GET)
-    public User getUser(@RequestParam int userId){
+    public User getUser(@RequestParam int userId, HttpServletRequest request){
         System.out.println("UserId:"+userId);
+
+        request.getSession().setAttribute("hello", "hello world");
         return userService.getUser();
     }
 

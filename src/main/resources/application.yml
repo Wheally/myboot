@@ -1,6 +1,16 @@
 spring:
     profiles:
         active: product
+    redis:
+        host: 127.0.0.1
+        port: 6379
+        database: 0
+        pool:
+            max-idle: 8
+            min-idle: 0
+            max-active: 8
+            max-wait: -1
+
 
 server:
     port: 9090
@@ -14,9 +24,10 @@ user:
 #redis cluster
 redis:
     cache:
-        clusterNodes: localhost:8080
+        clusterNodes: 127.0.0.1:6379
         commandTimeout: 5
         expireSeconds: 120
+
 
 mybatis:
     typeAliases:

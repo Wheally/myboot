@@ -17,6 +17,8 @@ public class Application implements EmbeddedServletContainerCustomizer {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class,args);
+
+        System.out.println(">>>>>>>>>>>>>>>服务启动执行主程序加载完毕<<<<<<<<<<<<<");
     }
 
     @Override
