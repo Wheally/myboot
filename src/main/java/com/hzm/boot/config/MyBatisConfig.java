@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.bind.RelaxedPropertyResolver;
+import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -19,11 +21,20 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@MapperScan(basePackages = "classpath:mapper")
-public class MyBatisConfig {
+public class MyBatisConfig implements EnvironmentAware{
 
     @Autowired
     private Environment env;
+
+    /**
+     * 第二种属性加载方式
+     */
+    private RelaxedPropertyResolver propertyResolver ;
+
+    @Override
+    public void setEnvironment(Environment environment) {
+        propertyResolver = new RelaxedPropertyResolver(environment, "jdbc.");
+    }
 
     /**
      * 创建数据源
@@ -36,7 +47,7 @@ public class MyBatisConfig {
         props.put("driverClassName", env.getProperty("jdbc.driverClassName"));
         props.put("url", env.getProperty("jdbc.url"));
         props.put("username", env.getProperty("jdbc.username"));
-        props.put("password", env.getProperty("jdbc.password"));
+        props.put("password", propertyResolver.getProperty("password"));
         return DruidDataSourceFactory.createDataSource(props);
     }
 
@@ -65,6 +76,5 @@ public class MyBatisConfig {
     public DataSourceTransactionManager transactionManager() throws Exception {
         return new DataSourceTransactionManager(getDataSource());
     }
-
 
 }

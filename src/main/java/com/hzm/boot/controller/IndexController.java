@@ -39,7 +39,7 @@ public class IndexController {
      * 测试全局异常处理
      * @return
      */
-    @RequestMapping("/exception")
+    @RequestMapping(value = "/exception", method = RequestMethod.GET)
     public int zeroException(){
         return 100/0;
     }
