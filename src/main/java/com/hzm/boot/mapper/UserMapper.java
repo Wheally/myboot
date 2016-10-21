@@ -3,6 +3,7 @@ package com.hzm.boot.mapper;
 import com.hzm.boot.domain.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 public interface UserMapper {
 
@@ -15,6 +16,13 @@ public interface UserMapper {
      */
     public int insertUserWithBackId(User user);
 
+    /**
+     * 根据用户Id查找用户
+     * @param userId
+     * @return
+     */
+    @Select("select id, name,password from tbl_user where id = #{userId}")
+    public User findUserById(@Param("userId") int userId);
 
 }
 

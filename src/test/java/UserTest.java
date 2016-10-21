@@ -61,6 +61,14 @@ public class UserTest{
     }
 
     @Test
+    public void findUser(){
+        User user = userService.findUser(1);
+
+        Assert.assertNotNull(user);
+        Assert.assertEquals("wenxq", user.getName());
+    }
+
+    @Test
     public void getUser() throws Exception {
 
         String expectedResult = "zhaojigang";

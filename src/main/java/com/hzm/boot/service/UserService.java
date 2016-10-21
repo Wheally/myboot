@@ -28,6 +28,10 @@ public class UserService {
         return user;
     }
 
+    public User findUser(int userId){
+        return userMapper.findUserById(userId);
+    }
+
     @Transactional
     public int saveUser(User user){
         return userMapper.insertUser(user.getName(), user.getPassword());
