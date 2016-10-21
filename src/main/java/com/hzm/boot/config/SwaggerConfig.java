@@ -24,14 +24,40 @@ public class SwaggerConfig {
     @Bean
     public Docket testApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
+                .groupName("test")
+                .apiInfo(testApiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.hzm.boot"))
+                .paths(PathSelectors.any()).build();
+    }
+
+    /**
+     * 可以定义多个组，比如本类中定义把test和demo区分开了 （访问页面就可以看到效果了）
+     *
+     */
+    @Bean
+    public Docket demoApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("demo")
+                .apiInfo(demoApiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.hzm.boot"))
                 .paths(PathSelectors.any()).build();
     }
 
 
-    private ApiInfo apiInfo() {
+    private ApiInfo testApiInfo() {
+        ApiInfo apiInfo = new ApiInfo("SpringBoot学习test", // 大标题
+                "Spring boot + swagger + mybatis + dubbo", // 小标题
+                "2.0",
+                "我来贷Welab service", "wenxiaoqian@wolaidai.com",
+                "我来贷Welab", // 链接显示文字
+                "http://www.wolaidai.com/"// 网站链接
+        );
+        return apiInfo;
+    }
+
+    private ApiInfo demoApiInfo() {
         ApiInfo apiInfo = new ApiInfo("SpringBoot学习demo", // 大标题
                 "Spring boot + swagger + mybatis + dubbo", // 小标题
                 "2.0",

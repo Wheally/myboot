@@ -1,5 +1,7 @@
 package com.hzm.boot.runner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -12,9 +14,11 @@ import org.springframework.stereotype.Component;
 @Order(1)
 public class DemoCommandRunner implements CommandLineRunner {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Override
     public void run(String... args) throws Exception {
-        System.out.println(">>>>>>>>>>>>>>>服务启动执行Demo1<<<<<<<<<<<<<");
+        logger.info(">>>>>>>>>>>>>>>服务启动执行Demo1<<<<<<<<<<<<<");
     }
 
 }

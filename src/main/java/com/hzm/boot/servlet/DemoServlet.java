@@ -2,6 +2,8 @@ package com.hzm.boot.servlet;
 
 import com.hzm.boot.api.HelloAPI;
 import com.hzm.boot.domain.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletException;
@@ -13,10 +15,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
+ * @desc springboot集成servlet
  * Created by WXQ on 2016/10/19.
  */
 @WebServlet(urlPatterns="/demoServlet/*", description="Servlet的说明")
 public class DemoServlet extends HttpServlet{
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private HelloAPI helloAPI;
@@ -31,12 +36,12 @@ public class DemoServlet extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String userId = req.getParameter("userId");
-        User user = helloAPI.getUser(userId);
+        User user = helloAPI.getUser(Integer.parseInt(userId));
         String userName = "";
         if(user != null){
             userName = user.getName();
         }
-        System.out.println(">>>>>>>>>>doPost()<<<<<<<<<<<");
+        logger.info(">>>>>>>>>>doPost()<<<<<<<<<<<");
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
         out.println("<html>");

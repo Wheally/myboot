@@ -10,7 +10,7 @@ import retrofit.http.Query;
 public interface HelloAPI {
 
     @GET("/user/getUser")
-    public User getUser(@Query("userId") String userId);
+    public User getUser(@Query("userId") int userId);
 
 
 
