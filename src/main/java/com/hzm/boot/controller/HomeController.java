@@ -19,7 +19,7 @@ public class HomeController {
         currentThread.setName("thread-" + userId);
         synchronized(currentThread) {
             try {
-                currentThread.wait();
+                currentThread.wait(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
