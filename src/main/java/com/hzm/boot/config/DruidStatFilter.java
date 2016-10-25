@@ -7,7 +7,7 @@ import com.alibaba.druid.support.http.WebStatFilter;
  
 /**
  * druid过滤器.
- * @author Administrator
+ * @author xiaoqian.wen
  *
  */
 @WebFilter(filterName="druidWebStatFilter",urlPatterns="/*",

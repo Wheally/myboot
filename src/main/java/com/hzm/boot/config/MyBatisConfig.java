@@ -5,6 +5,8 @@ import com.alibaba.druid.pool.DruidDataSourceFactory;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.mapper.MapperFactoryBean;
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.context.EnvironmentAware;
@@ -21,6 +23,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+@MapperScan(basePackages = "com.hzm.boot.mapper")
 public class MyBatisConfig implements EnvironmentAware{
 
     @Autowired
@@ -66,6 +69,7 @@ public class MyBatisConfig implements EnvironmentAware{
                                 .getResources(env.getProperty("mybatis.mapper.locations")));
         return sessionFactory.getObject();
     }
+
 
     /**
      * 事务管理

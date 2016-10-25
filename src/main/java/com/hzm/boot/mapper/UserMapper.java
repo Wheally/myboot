@@ -2,9 +2,13 @@ package com.hzm.boot.mapper;
 
 import com.hzm.boot.domain.User;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
+@Component
 public interface UserMapper {
 
     @Insert("INSERT INTO tbl_user(name, password) VALUES(#{name},#{password})")
@@ -23,6 +27,7 @@ public interface UserMapper {
      */
     @Select("select id, name,password from tbl_user where id = #{userId}")
     public User findUserById(@Param("userId") int userId);
+
 
 }
 
