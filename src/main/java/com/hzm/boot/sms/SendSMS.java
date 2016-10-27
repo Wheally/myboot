@@ -57,7 +57,7 @@ public class SendSMS {
         }
         return "";
     }
-
+    /*
     public static void main(String[] args) {
         String PostData = null;
         String mobile = "15818594258,15818701131,18665869521";
@@ -69,7 +69,7 @@ public class SendSMS {
         }
         String ret = sendSMS(PostData, "http://sms.106jiekou.com/utf8/openapi.aspx");
         System.out.println(Result.getName(ret.replace("\\n","")));
-    }
+    }*/
 
     public enum Result {
 
