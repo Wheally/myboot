@@ -71,7 +71,7 @@ public class UserTest{
     @Test
     public void getUser() throws Exception {
 
-        String expectedResult = "zhaojigang";
+        String expectedResult = "wenzj";
         String url = "/user/getUser?userId=2";
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get(url).accept(MediaType.APPLICATION_JSON))
                 .andReturn();
