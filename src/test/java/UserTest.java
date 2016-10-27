@@ -82,8 +82,8 @@ public class UserTest{
 
         Assert.assertTrue("错误，正确的返回值为200", status == 200);
         Assert.assertFalse("错误，正确的返回值为200", status != 200);
-        Assert.assertTrue("数据一致", expectedResult.equals(map.get("username")));
-        Assert.assertFalse("数据不一致", !expectedResult.equals(map.get("username")));
+        Assert.assertTrue("数据一致", expectedResult.equals(map.get("name")));
+        Assert.assertFalse("数据不一致", !expectedResult.equals(map.get("name")));
     }
 
 }
