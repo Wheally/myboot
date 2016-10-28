@@ -25,6 +25,7 @@ public class SwaggerConfig {
     public Docket testApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("test")
+                .forCodeGeneration(true)
                 .apiInfo(testApiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.hzm.boot"))
@@ -39,6 +40,7 @@ public class SwaggerConfig {
     public Docket demoApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("demo")
+                .forCodeGeneration(true)
                 .apiInfo(demoApiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.hzm.boot"))
