@@ -1,11 +1,11 @@
 package com.hzm.boot.controller;
 
+import com.hzm.boot.exception.BaseException;
+import com.hzm.boot.exception.ExpireException;
+import com.hzm.boot.exception.ShopStatusException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author Created by WXQ on 2016/10/18.
  */
 
-@Controller
+@RestController
 @RequestMapping("/index")
 public class IndexController {
 
@@ -30,7 +30,7 @@ public class IndexController {
     public String greeting(@RequestParam(name = "name", required = false, defaultValue = "world") String name,
                            Model model, HttpServletRequest request) {
 
-        model.addAttribute("xname", name + " ---eee");
+        model.addAttribute("xname", name + " ---fff");
         return "index";
     }
 
@@ -48,7 +48,12 @@ public class IndexController {
      */
     @ApiIgnore
     @RequestMapping(value = "/exception", method = RequestMethod.GET)
-    public int zeroException(){
+    public int zeroException(@RequestParam int param) throws BaseException{
+
+        if(param == 1){
+            throw new ShopStatusException("10002", "操作超时");
+        }
+
         return 100/0;
     }
 
