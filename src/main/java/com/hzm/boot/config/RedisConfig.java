@@ -3,6 +3,8 @@ package com.hzm.boot.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
@@ -23,6 +25,7 @@ import java.lang.reflect.Method;
  * Created by WXQ on 2016/10/19.
  */
 @Configuration
+@ConditionalOnProperty(prefix = "redis.cache", name = "enable", havingValue = "true", matchIfMissing = true)
 @EnableCaching
 @EnableRedisHttpSession
 public class RedisConfig extends CachingConfigurerSupport {

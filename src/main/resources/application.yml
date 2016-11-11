@@ -28,6 +28,7 @@ user:
 #redis cluster
 redis:
     cache:
+        enable: true
         clusterNodes: 127.0.0.1:6379
         commandTimeout: 5
         expireSeconds: 120
