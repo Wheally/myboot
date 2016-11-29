@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,7 +37,7 @@ public class UserController {
     @RequestMapping(value = "/getUser",method = RequestMethod.GET)
     public User getUser(@RequestParam int userId, HttpServletRequest request){
         System.out.println("UserId:"+userId);
-
+        
         request.getSession().setAttribute("hello", "hello world");
         return userService.getUser(userId);
     }

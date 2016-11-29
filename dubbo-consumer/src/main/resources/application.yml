@@ -1,0 +1,24 @@
+server:
+    port: 8001
+
+#dubbo
+dubbo:
+  application:
+    name: zhuikelai
+    logger: slf4j
+  annotation:
+    package: com.hzm.boot.dubbo.consumer
+  protocol:
+    name: dubbo
+    port: 20881
+    accessLog: true
+  provider:
+    timeout: 3000
+    retries: 1
+    delay: -1
+  registr:
+    protocol: zookeeper
+  registry:
+    address: 127.0.0.1:2181
+    register: true
+    subscribe: true
