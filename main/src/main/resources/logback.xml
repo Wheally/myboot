@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="false" scan="true" scanPeriod="1 seconds">
-    <contextName>SpringBoot Demo</contextName>
+    <contextName>myboot</contextName>
     <property name="log.path" value="logback.log" />
     <conversionRule conversionWord="ip" converterClass="com.hzm.boot.util.IpConvert" />
 

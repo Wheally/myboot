@@ -35,6 +35,12 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
+        <!-- jersey -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jersey</artifactId>
+        </dependency>
+
         <!-- thymeleaf -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
