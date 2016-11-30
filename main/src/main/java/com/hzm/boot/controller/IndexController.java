@@ -2,6 +2,8 @@ package com.hzm.boot.controller;
 
 import com.hzm.boot.exception.BaseException;
 import com.hzm.boot.exception.ShopStatusException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
@@ -17,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/index")
 public class IndexController {
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     /**
      * 问候
      * @param name  用户姓名
@@ -29,6 +33,7 @@ public class IndexController {
                            Model model, HttpServletRequest request) {
 
         model.addAttribute("xname", name + " ---fff");
+        logger.info("xname:"+name);
         return "index";
     }
 
