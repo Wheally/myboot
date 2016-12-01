@@ -2,11 +2,10 @@
 <configuration debug="false" scan="true" scanPeriod="1 seconds">
     <contextName>myboot</contextName>
     <property name="log.path" value="logback.log" />
-    <conversionRule conversionWord="ip" converterClass="com.hzm.boot.util.IpConvert" />
 
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}-%ip-sessionId:%X{sessionId} %contextName [%thread] %-5level %logger{36}-%line - %msg%n
+        <encoder class="com.hzm.boot.logback.LogBackExEncoder">
+            <pattern>%date-%ip-:%X{sessionId} %contextName [%thread][%T] %-5level %logger{36}.%method-%line - %msg%n
             </pattern>
         </encoder>
     </appender>
@@ -30,7 +29,7 @@
         </encoder>
     </appender>-->
 
-    <root level="debug">
+    <root level="info">
         <appender-ref ref="console" />
         <appender-ref ref="logstash" />
         <!--

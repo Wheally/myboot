@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * springboot + thymeleaf
@@ -59,6 +61,18 @@ public class IndexController {
         }
 
         return 100/0;
+    }
+
+    @RequestMapping(value = "/freemarker", method = RequestMethod.GET)
+    public String freemarker(Model model){
+        List<String> mybook = new ArrayList<String>();
+        mybook.add("微服务设计");
+        mybook.add("Storm技术内幕与大数据");
+        mybook.add("Linux系统命令有Shell脚本实践指南");
+        mybook.add("程序员必读之软件架构");
+        model.addAttribute("mybook", mybook);
+        model.addAttribute("hello", "wenxiaoqian");
+        return "hello";
     }
 
 
